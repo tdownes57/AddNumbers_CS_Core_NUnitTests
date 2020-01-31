@@ -1,0 +1,82 @@
+﻿
+Function Syntax Across Languages
+
+1) VB6
+
+    ''Add two numbers. 
+    Public Function AddNums(param1 As Integer, param2 as Integer) As Integer
+        AddNums = (param1 + param2)
+    End Function 
+
+2) VB.NET 
+
+    ''Add two numbers. 
+    Friend Shared Function AddNums(param1 As Integer, param1 As Integer) As Integer
+        Return (param1 + param2)
+    End Function 
+
+3) Javascript https://www.w3schools.com/js/js_functions.asp
+
+    //Add two numbers. 
+    function AddNums (param1, param2)
+    {
+         return (param1 + param2);
+    }
+
+4) Java
+
+    //Add two numbers. 
+    public int AddNums(int param1, param2)
+    {
+        return (param1 + param2);
+    }
+
+5) C/C++ 
+
+    //Header file (*.h)
+    int AddNums(int, int) 
+
+    //Source file (*.cpp)
+    int AddNums(int param1, int param2) 
+    {
+        return (param1 + param2);
+    }
+
+6) Python
+
+#Add two numbers.
+def AddNums(param1, param2):
+   return (param1 + param2)
+
+---OR---
+
+#Add two numbers.
+def AddNums(*params):
+   return (params[0] + params[1])
+
+7) COBOL  
+
+ADD_NUMS  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
