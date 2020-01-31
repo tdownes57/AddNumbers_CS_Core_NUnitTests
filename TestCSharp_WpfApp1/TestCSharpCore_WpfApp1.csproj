@@ -10,4 +10,8 @@
     <ProjectReference Include="..\AddHugeNumbers_NetCore\AddHugeNumbers_NetCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Bug Reports\" />
+  </ItemGroup>
+
 </Project>

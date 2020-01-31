@@ -335,8 +335,8 @@ namespace AddSubtractHugeNumbersCS
             //    If (pstrDecDigit = "9") Then Throw New Exception("Program error. The sum of two digits (e.g. 9 & 9) " &
             //              "will never result in a value of 9 in the ones place.")
 
-            if (pstrDecDigit == "9") throw new Exception("Program error. The sum of two digits (e.g. 9 & 9) " +
-                          "will never result in a value of 9 in the ones place.");
+            //if (pstrDecDigit == "9") throw new Exception("Program error. The sum of two digits (e.g. 9 & 9) " +
+            //              "will never result in a value of 9 in the ones place.");
 
             //    ''
             //    ''Major call.
