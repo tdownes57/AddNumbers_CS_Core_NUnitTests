@@ -12,6 +12,11 @@ and framework libraries. For e.g. they share the JIT, GC and types such as List 
 The fundamental purpose of .NET Core was so that .NET could be open source, cross-platform and be used 
 in more resource-constrained environments.
 
+https://www.intelegain.com/dot-net-framework-vs-dot-net-core/
+
+
+
+
 
 
 
