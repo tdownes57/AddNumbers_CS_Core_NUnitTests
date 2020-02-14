@@ -28,6 +28,30 @@ namespace TestCSharp_WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (e.Source == ButtonOkay)
+            {
+                MessageBox.Show("The Okay button is pressed.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("The original source is: " + e.OriginalSource.ToString(), "",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            if (e.Source == ButtonClose)
+            {
+                MessageBox.Show("The Close button is pressed.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("The original source is: " + e.OriginalSource.ToString(), "", 
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            if (e.Source == ButtonAddNums  )
+            {
+                //MessageBox.Show("The Okay button is pressed.", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                AddNumbersTogether_Master();
+            }
+
+        }
+
+        private void AddNumbersTogether_Master()
+        {
             //
             //Added 1/22/2020 thomas downes
             //
@@ -53,6 +77,15 @@ namespace TestCSharp_WpfApp1
                     MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             }
+
+        }
+
+        private void Grid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+
+
+
 
         }
     }

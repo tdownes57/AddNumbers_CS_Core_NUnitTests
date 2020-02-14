@@ -5,11 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestCSharp_WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Add the numbers together" Width="360" FontSize="25" Click="Button_Click" Margin="220,156,220,0" Height="61" VerticalAlignment="Top" />
+        Title="MainWindow" Height="450" Width="800"   >
+    <Grid PreviewMouseDown="Grid_PreviewMouseDown" >
+        <Button x:Name="ButtonAddNums" Content="Add the numbers together" Click="Button_Click"  Width="360" FontSize="25" Margin="220,156,220,0" Height="61" VerticalAlignment="Top" />
         <TextBox x:Name="TextBox1" Text="1234" FontSize="25" Margin="40,89,427,0" Height="42" VerticalAlignment="Top"  />
         <TextBox x:Name="TextBox2" Text="1234" Width="360" FontSize="25" Margin="405,89,35,0" Height="42" VerticalAlignment="Top"  />
         <TextBox x:Name="TextBoxResult" Text="Result" Width="360" FontSize="25" Margin="05,249,35,0" Height="42" VerticalAlignment="Top"  />
+        <Button x:Name="ButtonOkay" Content="Okay"   Click="Button_Click"  FontSize="25" Margin="368,327,235,0" Height="61" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment" />
+        <Button x:Name="ButtonClose" Content="Close"  Click="Button_Click" FontSize="25" Margin="583,326,35,0" Height="62" VerticalAlignment="Top" Width="182" />
     </Grid>
 </Window>

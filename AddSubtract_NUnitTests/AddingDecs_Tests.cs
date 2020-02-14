@@ -1,5 +1,6 @@
 using NUnit.Framework;
-using AddSubtractHugeNumbers_CS; //Added 1-0 8-2019 thomas downes 
+//using AddSubtractHugeNumbers_CS; //Added 1-0 8-2019 thomas downes 
+using AddingHugeNumbersCS;  //Added 2/13/2020 thomas downes
 
 namespace AddSubtract_NUnitTests
 {
@@ -38,7 +39,7 @@ namespace AddSubtract_NUnitTests
                 $"Added {psDecDigit1} and {psDecDigit2} should be equal to \"0\" not \"{strResult}\".  " + strErrMessage);
 
         }
-
+         
 
         [TestCase(" ", "1")]
         [TestCase("1", " ")]
@@ -49,7 +50,7 @@ namespace AddSubtract_NUnitTests
         [TestCase("4", "7")]
         [TestCase("5", "6")]
         [TestCase("6", "5")]
-        [TestCase("7", "4")]
+        [TestCase("7", "4")] 
         [TestCase("8", "3")]
         [TestCase("9", "2")]
         public void AddingDecimals_Equals1(string psDecDigit1, string psDecDigit2)
@@ -123,6 +124,29 @@ namespace AddSubtract_NUnitTests
 
             Assert.IsTrue(bMatchesExpectation,
                 $"Added {psDecDigit1} and {psDecDigit2} should be equal to \"3\" not \"{strResult}\".  " + strErrMessage);
+
+        }
+
+
+        [TestCase("-1", "-2")]
+        [TestCase("-2", "0")]
+        [TestCase("-2", "2")]
+        [TestCase("2", "-2")]
+        public void AddingNegatives_Equals0(string psDecDigit1, string psDecDigit2)
+        {
+            //
+            //What happens  
+            //
+            bool boolCarry = false;
+            string strErrMessage = "";
+
+            string strResult = AddingDecs.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
+                 ref boolCarry, ref strErrMessage);
+
+            bool bMatchesExpectation = (strResult == "0");
+
+            Assert.IsTrue(bMatchesExpectation,
+                $"Added {psDecDigit1} and {psDecDigit2} should be equal to \"0 \" not \"{strResult}\".  " + strErrMessage);
 
         }
 
