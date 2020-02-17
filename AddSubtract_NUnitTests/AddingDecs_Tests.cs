@@ -128,14 +128,14 @@ namespace AddSubtract_NUnitTests
         }
 
 
-        [TestCase("-1", "-2")]
-        [TestCase("-2", "0")]
+        [TestCase("-1", "-1")]
+        [TestCase("-1", "1")]
         [TestCase("-2", "2")]
         [TestCase("2", "-2")]
         public void AddingNegatives_Equals0(string psDecDigit1, string psDecDigit2)
         {
             //
-            //What happens  
+            //What happens when one of the numbers is negative?   
             //
             bool boolCarry = false;
             string strErrMessage = "";

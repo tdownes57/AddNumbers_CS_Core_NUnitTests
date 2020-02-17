@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCSharpCore_WpfApp1", "T
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AddSubtract_Python", "AddSubtract_Python\AddSubtract_Python.pyproj", "{90DAB216-0102-4889-ACED-F5255A99E969}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAdd_Core_ConsoleApp1", "TestAdd_Core_ConsoleApp1\TestAdd_Core_ConsoleApp1.csproj", "{A14DC0B6-E092-49CA-A144-D88A7E66750F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{BF9F5429-64BB-4EC6-966D-EC37DEB6D754}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90DAB216-0102-4889-ACED-F5255A99E969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90DAB216-0102-4889-ACED-F5255A99E969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A14DC0B6-E092-49CA-A144-D88A7E66750F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A14DC0B6-E092-49CA-A144-D88A7E66750F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A14DC0B6-E092-49CA-A144-D88A7E66750F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A14DC0B6-E092-49CA-A144-D88A7E66750F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
