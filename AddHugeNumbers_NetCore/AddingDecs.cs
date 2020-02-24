@@ -7,7 +7,8 @@ using System.Text;
 //
 
 // 2-13-2020 td // namespace AddSubtractHugeNumbersCS
-namespace AddingHugeNumbersCS 
+// 2-24-2020 td // namespace AddingHugeNumbersCS 
+namespace AddHugeNumbers_NetCore
 {
     //
     //Added 1/7/2019 thomas downes
