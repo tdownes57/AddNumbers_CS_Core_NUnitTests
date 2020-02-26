@@ -117,9 +117,20 @@ namespace AddHugeNumbers_NetCore
 
          }
 
+        public static string AddDecDigits_PaddedStrings(string pstrDecimalString1, string pstrDecimalString2, ref string pstrErrMessage)
+        {
+            //
+            //New public member, for unit-testing.  ----2/26/2020 thomas downes
+            //
+            return AddPaddedDecStrings(pstrDecimalString1, pstrDecimalString2, ref pstrErrMessage);
+
+        }
+
         private static string AddPaddedDecStrings(string pstrDec1, string pstrDec2, ref string pstrErrMessage)
         {
-            //    Private Function AddPaddedDecStrings(pstrDec1 As String, pstrDec2 As String,
+            // private static string AddPaddedDecStrings(string pstrDec1, string pstrDec2, ref string pstrErrMessage)
+            //
+            //        Private Function AddPaddedDecStrings(pstrDec1 As String, pstrDec2 As String,
             //                              ByRef pstrErrMessage As String) As String
 
             //    Dim intCharIndex As Integer
