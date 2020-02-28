@@ -152,7 +152,7 @@ namespace AddSubtract_NUnitTests
         }
 
 
-        [TestCase(" ", "20")]
+        [TestCase(" ", "    20")]
         [TestCase("20", " ")]
         [TestCase("0", "20")]
         [TestCase("1", "19")]
