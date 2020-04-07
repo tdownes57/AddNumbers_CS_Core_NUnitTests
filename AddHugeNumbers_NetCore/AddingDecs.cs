@@ -122,11 +122,14 @@ namespace AddHugeNumbersNetCore
             //
             //New public member, for unit-testing.  ----2/26/2020 thomas downes
             //
+            if (pstrDecimalString1 == null) throw new ArgumentException("No nulls allowed!!");
+            if (pstrDecimalString2 == null) throw new ArgumentException("No nulls allowed!!");
+
             return AddPaddedDecStrings(pstrDecimalString1, pstrDecimalString2, ref pstrErrMessage);
 
         }
 
-        private static string AddPaddedDecStrings(string pstrDec1, string pstrDec2, ref string pstrErrMessage)
+        private static string AddPaddedDecStrings(string pstrDecimalNum1, string pstrDecimalNum2, ref string pstrErrMessage)
         {
             // private static string AddPaddedDecStrings(string pstrDec1, string pstrDec2, ref string pstrErrMessage)
             //
@@ -156,7 +159,7 @@ namespace AddHugeNumbersNetCore
 
             //    boolUnequalLengths = (Len(pstrDec1) <> Len(pstrDec2))
 
-            boolUnequalLengths = (pstrDec1.Length != pstrDec2.Length);
+            boolUnequalLengths = (pstrDecimalNum1.Length != pstrDecimalNum2.Length);
 
             //    If(boolUnequalLengths) Then
             //       pstrErrMessage = "Dec strings are unequal in length."
@@ -170,13 +173,13 @@ namespace AddHugeNumbersNetCore
             }
 
             //    For intCharIndex = Len(pstrDec1) To 1 Step -1
-            for (intCharIndex = pstrDec1.Length; intCharIndex >= 1; intCharIndex--)
+            for (intCharIndex = pstrDecimalNum1.Length; intCharIndex >= 1; intCharIndex--)
             {
                 //strDecDigit1 = Mid$(pstrDec1, intCharIndex, 1)
                 //strDecDigit2 = Mid$(pstrDec2, intCharIndex, 1)
 
-                strDecDigit1 = pstrDec1.Substring(-1 + intCharIndex, 1);
-                strDecDigit2 = pstrDec2.Substring(-1 + intCharIndex, 1);
+                strDecDigit1 = pstrDecimalNum1.Substring(-1 + intCharIndex, 1);
+                strDecDigit2 = pstrDecimalNum2.Substring(-1 + intCharIndex, 1);
 
                 //strNewDigit = AddDecDigits_ThenAddOneIfRequested(strDecDigit1,
                 //                                      strDecDigit2,
@@ -187,8 +190,8 @@ namespace AddHugeNumbersNetCore
                 //
                 //Added 4/7/2020 thomas downes
                 //
-                if (strDecDigit1 == "6" && strDecDigit2 == "3") System.Diagnostics.Debugger.Break();
-                if (strDecDigit1 == "3" && strDecDigit2 == "6") System.Diagnostics.Debugger.Break();
+                //if (strDecDigit1 == "6" && strDecDigit2 == "3") System.Diagnostics.Debugger.Break();
+                //if (strDecDigit1 == "3" && strDecDigit2 == "6") System.Diagnostics.Debugger.Break();
 
                 strNewDigit = AddDecDigits_ThenAddOneIfRequested(strDecDigit1, 
                                                                  strDecDigit2, 
@@ -205,8 +208,16 @@ namespace AddHugeNumbersNetCore
                 strConcatenated = (strNewDigit + strConcatenated);
 
                 //''Prepare for next iteration.
-                //boolCarryTheOne_Curr = boolCarryTheOne_Next
-                // boolCarryTheOne_Next = False ''Reinitialize.
+                //----boolCarryTheOne_Curr = boolCarryTheOne_Next
+                //----boolCarryTheOne_Next = False ''Reinitialize.
+
+                //Testing for a bug. ---4/7/2020 td
+                if (intCharIndex == 1)
+                {
+                    //if (strDecDigit1 == "6" && strDecDigit2 == "3") System.Diagnostics.Debugger.Break();
+                    //if (strDecDigit1 == "3" && strDecDigit2 == "6") System.Diagnostics.Debugger.Break();
+                }
+
                 boolCarryTheOne_Curr = boolCarryTheOne_Next;
                 boolCarryTheOne_Next = false; //''Reinitialize.
 
@@ -288,9 +299,10 @@ namespace AddHugeNumbersNetCore
 
                 pref_bCarryThe1_ForNextOperation = false; //Reinitialize.
                 strDecDigit_Final = Add1_ForPriorOperation(strDecDigit_Temp, ref boolCarryThe1_Temp2, ref pstrErrMessage);
-                boolCarryThe1_Temp2 = false; //This sort of operation is highly unlikely to trigger
-                //   any additional "carry" procedures, since (9 + 9) + 1 = 18 + 1 = 19, and 18 & 19 
-                //   both have "1" as the tens unit.   Oh, wait, what about (4 + 5) + 1 = 9 + 1 = 10 ??
+                
+                // 4-7-2020 thomas downes----boolCarryThe1_Temp2 = false; //This sort of operation is highly 
+                //   unlikely to trigger any additional "carry" procedures, since (9 + 9) + 1 = 18 + 1 = 19, 
+                //   and 18 & 19 both have "1" as the tens unit.   Oh, wait, what about (4 + 5) + 1 = 9 + 1 = 10 ??
                 //   Oops..... ---1/20/2020   
 
                 //            ''

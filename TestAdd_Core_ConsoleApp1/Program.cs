@@ -61,7 +61,17 @@ namespace TestAdd_Core_ConsoleApp1
 
             }
 
-
+            //
+            // Output the sum. 
+            //
+            Console.WriteLine("...");
+            Console.WriteLine("The sum of the numbers is as follows: ");
+            Console.WriteLine("...");
+            Console.WriteLine(strTotalSummed);
+            Console.WriteLine("...");
+            Console.WriteLine("...");
+            Console.WriteLine("Press the Enter key to exit the program.");
+            Console.ReadLine();
 
         }
     }
