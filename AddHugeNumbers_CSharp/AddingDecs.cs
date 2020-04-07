@@ -281,7 +281,8 @@ namespace AddHugeNumbers_CSharp
 
                 pref_bCarryThe1_ForNextOperation = false; //Reinitialize.
                 strDecDigit_Final = Add1_ForPriorOperation(strDecDigit_Temp, ref boolCarryThe1_Temp2, ref pstrErrMessage);
-                boolCarryThe1_Temp2 = false; //This sort of operation is highly unlikely to trigger
+                
+                //4-7-2020 td//boolCarryThe1_Temp2 = false; //This sort of operation is highly unlikely to trigger
                 //   any additional "carry" procedures, since (9 + 9) + 1 = 18 + 1 = 19, and 18 & 19 
                 //   both have "1" as the tens unit.   Oh, wait, what about (4 + 5) + 1 = 9 + 1 = 10 ??
                 //   Oops..... ---1/20/2020   
