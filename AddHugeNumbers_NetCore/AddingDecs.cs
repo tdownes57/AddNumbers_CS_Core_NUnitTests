@@ -20,7 +20,7 @@ namespace AddHugeNumbersNetCore
         //
 
         public static string AddAnyTwoDecStrings(string pstrDec1, string pstrDec2, 
-                                  ref string pstrErrMessage, bool pbIncludeCommas = false)
+                                  ref string pstrErrMessage, bool pbFormatIncludeCommas = false)
         {
 
             //    Public Function AddAnyTwoDecStrings(pstrDec1 As String, pstrDec2 As String,
@@ -69,7 +69,7 @@ namespace AddHugeNumbersNetCore
             //                                          pstrErrMessage)
 
             // 4-7-2020 td //strOutput = AddPaddedDecStrings(strDec1_Padded, strDec2_Padded, ref pstrErrMessage);
-            strOutput = AddPaddedDecStrings(strDec1_Padded, strDec2_Padded, ref pstrErrMessage, pbIncludeCommas);
+            strOutput = AddPaddedDecStrings(strDec1_Padded, strDec2_Padded, ref pstrErrMessage, pbFormatIncludeCommas);
 
             //    ''Don't return any value if there's an error message.
             //    If(pstrErrMessage<> "") Then AddAnyTwoDecStrings = ""
@@ -120,7 +120,7 @@ namespace AddHugeNumbersNetCore
          }
 
         public static string AddDecDigits_PaddedStrings(string pstrDecimalString1, string pstrDecimalString2, 
-                                  ref string pstrErrMessage, bool pbIncludeCommas = false)
+                                  ref string pstrErrMessage, bool pbFormatIncludeCommas = false)
         {
             //
             //New public member, for unit-testing.  ----2/26/2020 thomas downes
@@ -129,12 +129,12 @@ namespace AddHugeNumbersNetCore
             if (pstrDecimalString2 == null) throw new ArgumentException("No nulls allowed!!");
 
             // 4/7/2020 td //return AddPaddedDecStrings(pstrDecimalString1, pstrDecimalString2, ref pstrErrMessage);
-            return AddPaddedDecStrings(pstrDecimalString1, pstrDecimalString2, ref pstrErrMessage, pbIncludeCommas);
+            return AddPaddedDecStrings(pstrDecimalString1, pstrDecimalString2, ref pstrErrMessage, pbFormatIncludeCommas);
 
         }
 
         private static string AddPaddedDecStrings(string pstrDecimalNum1, string pstrDecimalNum2, 
-                                      ref string pstrErrMessage, bool pbIncludeCommas = false)
+                                      ref string pstrErrMessage, bool pbFormatToIncludeCommas = false)
         {
             // private static string AddPaddedDecStrings(string pstrDec1, string pstrDec2, ref string pstrErrMessage)
             //
@@ -205,7 +205,8 @@ namespace AddHugeNumbersNetCore
                                                                  strDecDigit2, 
                                                                  boolCarryTheOne_Curr,
                                                                 ref boolCarryTheOne_Next,
-                                                                ref pstrErrMessage);
+                                                                ref pstrErrMessage,
+                                                                pbFormatToIncludeCommas);
 
                 //If(pstrErrMessage<> "") Then Exit Function
 
@@ -217,11 +218,12 @@ namespace AddHugeNumbersNetCore
                 // 4-7-2020 td//strConcatenated.Append(strNewDigit);
 
                 //
-                //Format with commas.  ----Added 4/7/2020 thomas downes
+                //Format with commas, if needed.  ----Added 4/7/2020 thomas downes
                 //
-                if (pbIncludeCommas && bInsertNewComma) 
-                { 
-                    strConcatenated.Insert(0, ',');
+                if (pbFormatToIncludeCommas && bInsertNewComma) 
+                {
+                    // 4/7/2020 td //strConcatenated.Insert(0, ',');
+                    if (strNewDigit != ",") strConcatenated.Insert(0, ',');
                     bInsertNewComma = false;  //Reinitialize.
                     strMostSignificantTriplet = ""; //Reinitialize.
                 }
@@ -237,7 +239,7 @@ namespace AddHugeNumbersNetCore
                 //Format with commas, at the correct time.  ----Added 4/6/2020 thomas downes
                 //
                 string strDummy = pstrDecimalNum1; 
-                if (pbIncludeCommas)
+                if (pbFormatToIncludeCommas)
                 {
                     if (strNewDigit == ",") strMostSignificantTriplet = ""; //Reinitialize. 
                     //---if (3 == strMostSignificantTriplet.Length) strConcatenated.Append(",");
@@ -289,8 +291,18 @@ namespace AddHugeNumbersNetCore
             if (boolCarryTheOne_Curr)
             {
                 //---strConcatenated.Append("1");
-                if (bInsertNewComma) strConcatenated.Insert(0, ',');  
-                bInsertNewComma = false;  //Reinitialize. 
+                if (pbFormatToIncludeCommas)
+                {
+                    if (bInsertNewComma) strConcatenated.Insert(0, ',');
+                    bInsertNewComma = false;  //Reinitialize. 
+                }
+                
+                // We need to prefix a "1" when the sum of numbers 
+                //   contains a greater order of magnitude than the 
+                //   summands.  So, the "1" is carried into a new
+                //   decimal place that wasn't being used before.
+                //   ---4/7/2020 td
+                //
                 strConcatenated.Insert(0, '1');
             }
 
@@ -306,7 +318,8 @@ namespace AddHugeNumbersNetCore
         private static string AddDecDigits_ThenAddOneIfRequested(string pstrDecDigit1, string pstrDecDigit2,
                                                           bool pboolThenAdd1_ForPriorOperation,
                                                           ref bool pref_bCarryThe1_ForNextOperation,
-                                                          ref string pstrErrMessage)
+                                                          ref string pstrErrMessage,
+                                                          bool pbFormatIncludesCommas)
         {
             //        Private Function AddDecDigits_ThenAddOneIfRequested(ByVal pstrDecDigit1 As String,
             //                        ByVal pstrDecDigit2 As String,
@@ -328,7 +341,7 @@ namespace AddHugeNumbersNetCore
             bool boolCarryThe1_Temp1 = false;
             bool boolCarryThe1_Temp2 = false;
 
-            //strDecDigit_Temp = AddDecDigits_ByArrays(pstrDecDigit1, pstrDecDigit2, boolCarryThe1_Temp1, pstrErrMessage)
+            //--strDecDigit_Temp = AddDecDigits_ByArrays(pstrDecDigit1, pstrDecDigit2, boolCarryThe1_Temp1, pstrErrMessage)
              
             strDecDigit_Temp = AddDecDigits_ByArrays(pstrDecDigit1, pstrDecDigit2, ref boolCarryThe1_Temp1, ref pstrErrMessage);
 
@@ -338,7 +351,22 @@ namespace AddHugeNumbersNetCore
 
             //       If (pboolThenAdd1_ForPriorOperation) Then
 
-            if (pboolThenAdd1_ForPriorOperation)
+            //Added 4/7/2020 thomas downes
+            bool bCarryThe1_DespiteComma = (pbFormatIncludesCommas &&
+                      ((strDecDigit_Temp == ",") && pboolThenAdd1_ForPriorOperation));
+
+            if (pbFormatIncludesCommas && bCarryThe1_DespiteComma)
+            {
+                //
+                //Special processing for commas. ---4.7.2020 td
+                //  Don't let's drop the "Add 1" (Carry) simply because
+                //  we have encountered commas.  ---4/7/2020 td 
+                //
+                pref_bCarryThe1_ForNextOperation = pboolThenAdd1_ForPriorOperation;
+                return strDecDigit_Temp;  
+
+            }
+            else if (pboolThenAdd1_ForPriorOperation)
             {
                 //      ''
                 //      ''We've been requested to add an extra "1" due to a prior operation (for an adjacent pair of digits)
