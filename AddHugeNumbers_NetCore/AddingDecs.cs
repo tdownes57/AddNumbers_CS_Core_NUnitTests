@@ -19,7 +19,8 @@ namespace AddHugeNumbersNetCore
         //Added 1/7/2019 thomas downes
         //
 
-        public static string AddAnyTwoDecStrings(string pstrDec1, string pstrDec2, ref string pstrErrMessage)
+        public static string AddAnyTwoDecStrings(string pstrDec1, string pstrDec2, 
+                                  ref string pstrErrMessage, bool pbIncludeCommas = false)
         {
 
             //    Public Function AddAnyTwoDecStrings(pstrDec1 As String, pstrDec2 As String,
@@ -67,7 +68,8 @@ namespace AddHugeNumbersNetCore
             //    AddAnyTwoDecStrings = AddPaddedDecStrings(strDec1_Padded, strDec2_Padded,
             //                                          pstrErrMessage)
 
-            strOutput = AddPaddedDecStrings(strDec1_Padded, strDec2_Padded, ref pstrErrMessage);
+            // 4-7-2020 td //strOutput = AddPaddedDecStrings(strDec1_Padded, strDec2_Padded, ref pstrErrMessage);
+            strOutput = AddPaddedDecStrings(strDec1_Padded, strDec2_Padded, ref pstrErrMessage, pbIncludeCommas);
 
             //    ''Don't return any value if there's an error message.
             //    If(pstrErrMessage<> "") Then AddAnyTwoDecStrings = ""
@@ -117,7 +119,8 @@ namespace AddHugeNumbersNetCore
 
          }
 
-        public static string AddDecDigits_PaddedStrings(string pstrDecimalString1, string pstrDecimalString2, ref string pstrErrMessage)
+        public static string AddDecDigits_PaddedStrings(string pstrDecimalString1, string pstrDecimalString2, 
+                                  ref string pstrErrMessage, bool pbIncludeCommas = false)
         {
             //
             //New public member, for unit-testing.  ----2/26/2020 thomas downes
@@ -125,11 +128,13 @@ namespace AddHugeNumbersNetCore
             if (pstrDecimalString1 == null) throw new ArgumentException("No nulls allowed!!");
             if (pstrDecimalString2 == null) throw new ArgumentException("No nulls allowed!!");
 
-            return AddPaddedDecStrings(pstrDecimalString1, pstrDecimalString2, ref pstrErrMessage);
+            // 4/7/2020 td //return AddPaddedDecStrings(pstrDecimalString1, pstrDecimalString2, ref pstrErrMessage);
+            return AddPaddedDecStrings(pstrDecimalString1, pstrDecimalString2, ref pstrErrMessage, pbIncludeCommas);
 
         }
 
-        private static string AddPaddedDecStrings(string pstrDecimalNum1, string pstrDecimalNum2, ref string pstrErrMessage)
+        private static string AddPaddedDecStrings(string pstrDecimalNum1, string pstrDecimalNum2, 
+                                      ref string pstrErrMessage, bool pbIncludeCommas = false)
         {
             // private static string AddPaddedDecStrings(string pstrDec1, string pstrDec2, ref string pstrErrMessage)
             //
@@ -148,7 +153,8 @@ namespace AddHugeNumbersNetCore
             //    Dim boolIsALeadingZero As Boolean ''Added 7/11/2016 Thomas Downes
 
             int intCharIndex = 0;
-            string strConcatenated = "";
+            // 4-7-2020 td//string strConcatenated = "";
+            var strConcatenated = new System.Text.StringBuilder(1 + pstrDecimalNum1.Length);
             bool boolUnequalLengths = false;
             string strNewDigit = "";
             string strDecDigit1 = "";
@@ -156,6 +162,8 @@ namespace AddHugeNumbersNetCore
             bool boolCarryTheOne_Curr = false;
             bool boolCarryTheOne_Next = false;
             bool boolIsALeadingZero = false; //Added 7/11/2016 thomas downes
+            string strMostSignificantTriplet = ""; //Reinitialize.  
+            bool bInsertNewComma = false; // Added 4/7/2020 td
 
             //    boolUnequalLengths = (Len(pstrDec1) <> Len(pstrDec2))
 
@@ -205,7 +213,42 @@ namespace AddHugeNumbersNetCore
 
                 //strConcatenated = (strNewDigit & strConcatenated)
 
-                strConcatenated = (strNewDigit + strConcatenated);
+                // 4-7-2020 td//strConcatenated = (strNewDigit + strConcatenated);
+                // 4-7-2020 td//strConcatenated.Append(strNewDigit);
+
+                //
+                //Format with commas.  ----Added 4/7/2020 thomas downes
+                //
+                if (pbIncludeCommas && bInsertNewComma) 
+                { 
+                    strConcatenated.Insert(0, ',');
+                    bInsertNewComma = false;  //Reinitialize.
+                    strMostSignificantTriplet = ""; //Reinitialize.
+                }
+
+                //
+                //Prepend the new digit, via insertion (so the new digit is in 
+                //   the most significant decimal position).
+                //      ----Added 4/6/2020 thomas downes
+                //
+                strConcatenated.Insert(0, strNewDigit);
+
+                //
+                //Format with commas, at the correct time.  ----Added 4/6/2020 thomas downes
+                //
+                string strDummy = pstrDecimalNum1; 
+                if (pbIncludeCommas)
+                {
+                    if (strNewDigit == ",") strMostSignificantTriplet = ""; //Reinitialize. 
+                    //---if (3 == strMostSignificantTriplet.Length) strConcatenated.Append(",");
+                    else if (3 == strMostSignificantTriplet.Length) bInsertNewComma = true;
+                    else if (3 > strMostSignificantTriplet.Length)
+                    {
+                        strMostSignificantTriplet = (strNewDigit + strMostSignificantTriplet);
+                        //Added 4/7/2020 thomas downes
+                        if (3 == strMostSignificantTriplet.Length) bInsertNewComma = true;
+                    }
+                }
 
                 //''Prepare for next iteration.
                 //----boolCarryTheOne_Curr = boolCarryTheOne_Next
@@ -242,11 +285,19 @@ namespace AddHugeNumbersNetCore
 
             //If(boolCarryTheOne_Curr) Then strConcatenated = ("1" & strConcatenated)
 
-            if (boolCarryTheOne_Curr) strConcatenated = ("1" + strConcatenated);
+            // 4-7-2020 td // if (boolCarryTheOne_Curr) strConcatenated = ("1" + strConcatenated);
+            if (boolCarryTheOne_Curr)
+            {
+                //---strConcatenated.Append("1");
+                if (bInsertNewComma) strConcatenated.Insert(0, ',');  
+                bInsertNewComma = false;  //Reinitialize. 
+                strConcatenated.Insert(0, '1');
+            }
 
             //AddPaddedDecStrings = strConcatenated
 
-            return strConcatenated;
+            // 4-7-2020 td // return strConcatenated;
+            return strConcatenated.ToString();
 
             //End Function ''End of Function AddPaddedDecStrings
 
@@ -415,6 +466,10 @@ namespace AddHugeNumbersNetCore
             string[] arrayDecDigs;
             bool boolMatched1 = false, boolMatched2 = false;
 
+            //Added 4/7/2020 td
+            if (pstrDecDigit1 == null) throw new ArgumentNullException();
+            if (pstrDecDigit2 == null) throw new ArgumentNullException();
+
             //    If(pstrDecDigit1 = " " Or pstrDecDigit2 = " ") Then
             //       If(pstrDecDigit1 = " ") Then AddDecDigits_ByArrays = pstrDecDigit2
             //        If(pstrDecDigit2 = " ") Then AddDecDigits_ByArrays = pstrDecDigit1
@@ -425,6 +480,19 @@ namespace AddHugeNumbersNetCore
             {
                 if (pstrDecDigit1 == " ") return pstrDecDigit2;
                 if (pstrDecDigit2 == " ") return pstrDecDigit1;
+            }
+
+            //Added 4/7/2020 thomas downes
+            if (pstrDecDigit1 == "," && pstrDecDigit2 == ",")
+            {
+                return ",";
+            }
+
+            //Added 4/7/2020 thomas downes
+            if (pstrDecDigit1 == "," && pstrDecDigit2[0] >= '0' && pstrDecDigit2[0] <= '9')
+            {
+                //Added 4/7/2020 thomas downes
+                throw new InvalidOperationException("There is a comma-discrepancy in the two numbers being added.");
             }
 
             //    arrayDecDigs(0) = "0"
