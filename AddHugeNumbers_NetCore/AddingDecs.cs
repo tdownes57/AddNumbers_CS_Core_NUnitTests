@@ -8,7 +8,7 @@ using System.Text;
 
 // 2-13-2020 td // namespace AddSubtractHugeNumbersCS
 // 2-24-2020 td // namespace AddingHugeNumbersCS 
-namespace AddHugeNumbers_NetCore
+namespace AddHugeNumbersNetCore
 {
     //
     //Added 1/7/2019 thomas downes
@@ -184,6 +184,12 @@ namespace AddHugeNumbers_NetCore
                 //                                      boolCarryTheOne_Next,
                 //                                      pstrErrMessage)
 
+                //
+                //Added 4/7/2020 thomas downes
+                //
+                if (strDecDigit1 == "6" && strDecDigit2 == "3") System.Diagnostics.Debugger.Break();
+                if (strDecDigit1 == "3" && strDecDigit2 == "6") System.Diagnostics.Debugger.Break();
+
                 strNewDigit = AddDecDigits_ThenAddOneIfRequested(strDecDigit1, 
                                                                  strDecDigit2, 
                                                                  boolCarryTheOne_Curr,
@@ -212,10 +218,10 @@ namespace AddHugeNumbers_NetCore
 
             boolIsALeadingZero = ((strNewDigit == "0") && (!boolCarryTheOne_Curr));
 
-            //''Added 7/11/2016 Thomas Downes
-            //If(boolIsALeadingZero) Then
-            //     MsgBox("How strange!!  A leading zero!", vbExclamation)
-            //End If ''End of "If (strNewDigit = "0") Then"
+            //---''Added 7/11/2016 Thomas Downes
+            //---If(boolIsALeadingZero) Then
+            //---     MsgBox("How strange!!  A leading zero!", vbExclamation)
+            //---End If ''End of "If (strNewDigit = "0") Then"
 
             if (boolIsALeadingZero)
             {
