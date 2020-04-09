@@ -12,7 +12,7 @@ namespace AddHugeNumbers_CSharp
     //
     //Added 1/7/2019 thomas downes
     //
-    public static class AddingDecs
+    public static class AddingDecs_Strings
     {
         //
         //Added 1/7/2019 thomas downes
@@ -361,7 +361,7 @@ namespace AddHugeNumbers_CSharp
             strDigitResult = AddDecDigits_ByArrays(pstrDecDigit, c_strDigitOne, ref pref_bCarry1, ref pstrErrMessage);
 
             //If (boolCarryThe1) Then Throw New Exception("Program error. Adding a 1 to the ones place, after a sum of two digits (e.g. 9 & 9) " &
-            //                                                "will never result in a value of 9 becoming a value of 10.")
+            //                 "will never result in a value of 9 becoming a value of 10.")
 
             //---$----Oops, I forgot about (4+5)+1 becoming 10.  ----1/20/2020 td
             //---&-if (boolCarryThe1) throw new Exception("Program error. Adding a 1 to the ones place, after a sum of two digits (e.g. 9 & 9) " +
@@ -503,7 +503,7 @@ namespace AddHugeNumbers_CSharp
             //return 0; 
         }
 
-        public static char AddDecDigits_ByArrays_NotInUse(char pstrDecDigit1, char pstrDecDigit2,
+        public static char AddDecDigits_ByArrays(char pstrDecDigit1, char pstrDecDigit2,
                    ref bool pref_bCarryTheOne,
                    ref string pref_sErrorMessage)
         {
