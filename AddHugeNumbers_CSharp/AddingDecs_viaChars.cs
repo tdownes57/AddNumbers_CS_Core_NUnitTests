@@ -469,5 +469,39 @@ namespace AddHugeNumbers_CSharp
             //return 0; 
 
         }
+
+
+        public static char IncrementDigit(char pstrDecDigit1, ref bool pref_bCarryTheOne,
+            ref string pref_sErrorMessage)
+        {
+            //
+            //Added 4/9/2020 thomas downes
+            //
+            //  Let's make this very fast. 
+            //
+            if (pstrDecDigit1 == ' ') return ' ';
+            if (pstrDecDigit1 == '0') return '1';
+            if (pstrDecDigit1 == '1') return '2';
+            if (pstrDecDigit1 == '2') return '3';
+            if (pstrDecDigit1 == '3') return '4';
+            if (pstrDecDigit1 == '4') return '5';
+            if (pstrDecDigit1 == '5') return '6';
+            if (pstrDecDigit1 == '6') return '7';
+            if (pstrDecDigit1 == '7') return '8';
+            if (pstrDecDigit1 == '8') return '9';
+            if (pstrDecDigit1 == '9') 
+            {
+                pref_bCarryTheOne = true;
+                return '0'; 
+            }
+            if (pstrDecDigit1 == ',')
+            {
+                pref_bCarryTheOne = true; // We will increment the next decimal position. 
+                return ',';
+            }
+
+            throw new ArgumentException("The character is not recognized. ");
+
+        }
+
     }
-}
