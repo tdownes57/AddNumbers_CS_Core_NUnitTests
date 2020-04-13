@@ -54,7 +54,7 @@ namespace TestAdd_Core_ConsoleApp1
                 }
 
                 if (bUserWantsToExit) break;
-                if (mod_bUserStoppedExecution) break; 
+                //-----if (mod_bUserStoppedExecution) break; 
 
             } while (true);
 
@@ -147,7 +147,8 @@ namespace TestAdd_Core_ConsoleApp1
             //
             string strNumber = "1";
             int intSleepMS = 100;
-            bool boolSleepActivated = false;
+            bool boolSleepActivated = true;  // false;
+            string strErrorMessage = "";
 
             do //while (true)
             {
@@ -164,8 +165,9 @@ namespace TestAdd_Core_ConsoleApp1
                     if (Console.ReadKey(true).Key == ConsoleKey.Y)
                     {
                         // Added 4/12/2020 thomas downes 
-                        boolSleepActivated = true;  
-                        intSleepMS *= 100;
+                        boolSleepActivated = true;
+                        //intSleepMS += 100;
+                        intSleepMS = (2 * intSleepMS);
                     }
                 }
 
@@ -174,7 +176,7 @@ namespace TestAdd_Core_ConsoleApp1
                 //
                 // Major call !!  
                 //
-                strNumber = AddHugeNumbersNetCore.IncrementingNumbers.Increment(strNumber);  
+                strNumber = IncrementAnyNumber.IncrementAnyString(strNumber, ref strErrorMessage, true);  
 
                 if (boolSleepActivated) System.Threading.Thread.Sleep(intSleepMS);  
 
