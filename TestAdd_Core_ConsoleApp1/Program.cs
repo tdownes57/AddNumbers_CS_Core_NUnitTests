@@ -6,8 +6,65 @@ namespace TestAdd_Core_ConsoleApp1
 {
     class Program
     {
+        private static bool mod_bUserStoppedExecution = false; // Added 4/12/2020 thomas downes
+
         static void Main(string[] args)
         {
+            //
+            // Encapsulated 4/12/2020 thomas  
+            //
+            Console.WriteLine("_________________________________________________________________________");
+            Console.WriteLine("____                                                              _______");
+            Console.WriteLine("____  Adding Huge Numbers / Fibonacci / Incrmenting to a Trillion _______");
+            Console.WriteLine("____                                                              _______");
+            Console.WriteLine("_________________________________________________________________________");
+
+            //bool boolAdding;
+            //bool boolFibonacci;
+            //bool boolIncrementing;  
+            bool bUserWantsToExit = false;
+
+            do
+            {
+                //Added 4/12/2020 thomas downes
+                Console.WriteLine("__");
+                Console.WriteLine("Which: Adding (A), Fibonacci (F), Incrementing (I) ? ");
+                Console.WriteLine("__");
+                Console.WriteLine("__ (Press X to exit the program.)");
+                Console.WriteLine("__");
+                //char keyPressed = Console.ReadKey(true).KeyChar;
+                var keyPressedInfo = Console.ReadKey(true);
+
+                switch (keyPressedInfo.Key)
+                {
+                    case (ConsoleKey.A): Main_AddingHugeNumbers(); break;
+                    case (ConsoleKey.F): FibonacciViaDP.Fibonacci_Choices(); break;
+                    case (ConsoleKey.I): Main_Incrementing(); break;
+
+                    //
+                    // Allow the user to exit the program. 
+                    //
+                    case (ConsoleKey.X): bUserWantsToExit = true; break;
+
+                }
+
+
+
+            } while (true);
+
+
+
+
+
+
+        }
+
+
+        static void Main_AddingHugeNumbers()
+        {
+            //
+            //Added 4/12/2020 Thomas Downes
+            //
             List<string> listOfNumbers = new List<string>();
             //Console.WriteLine("Hello World!");
             //
@@ -18,7 +75,7 @@ namespace TestAdd_Core_ConsoleApp1
             Console.WriteLine("_________________________________");
             Console.WriteLine("__");
             Console.WriteLine("__Enter huge decimal number #1:");
-            listOfNumbers.Add( Console.ReadLine());
+            listOfNumbers.Add(Console.ReadLine());
             Console.WriteLine("__");
             Console.WriteLine("__Enter huge decimal number #2:");
             listOfNumbers.Add(Console.ReadLine());
@@ -57,7 +114,7 @@ namespace TestAdd_Core_ConsoleApp1
                 strTotalSummed =
                 AddingDecs.AddAnyTwoDecStrings(strTotalSummed, listOfNumbers[2], ref strErrorMessage);
 
-                if ("" != strErrorMessage) throw new Exception("Problem adding: " + strErrorMessage); 
+                if ("" != strErrorMessage) throw new Exception("Problem adding: " + strErrorMessage);
 
             }
 
@@ -74,5 +131,41 @@ namespace TestAdd_Core_ConsoleApp1
             Console.ReadLine();
 
         }
+
+
+        static void Main_Incrementing()
+        {
+            //
+            //Added 4/12/2020 Thomas Downes
+            //
+            string strNumber = "1";
+
+            do //while (true)
+            {
+
+                Console.WriteLine(strNumber);
+
+                //strNumber = AddHugeNumbersNetCore.Ins
+
+            } while (true);
+
+
+
+
+
+        }
+
+
+        protected static void myHandler(object sender, ConsoleCancelEventArgs args)
+        {
+            //
+            //  https://docs.microsoft.com/en-us/dotnet/api/system.console.cancelkeypress?view=netframework-4.8
+            //
+            mod_bUserStoppedExecution = true;
+            args.Cancel = true;  //Suppress the default behavior caused by CTRL-C.  
+        }
+
+
     }
+
 }
