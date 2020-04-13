@@ -14,7 +14,9 @@ namespace AddHugeNumbersNetCore
             //  Let's make this very fast. 
             //
             char charCurrDigit = ' ';
-            //pstrInputNumber = pstrInputNumber.Trim(); 
+            //pstrInputNumber = pstrInputNumber.Trim();
+
+            if (pstrInputNumber == null) throw new ArgumentException("Please don't give me Null values.");
 
             //
             //https://stackoverflow.com/questions/8987141/how-to-change-1-char-in-the-string
@@ -25,10 +27,24 @@ namespace AddHugeNumbersNetCore
             char charIncremented = ' ';
             bool bCarryTheOne_NextOperation = false;
             int intIndexOfBiggestComma = -1;
+            bool bCarryTheOne_CurrentOperation = false;  // Added 4/13/2020 td 
+            bool bSubsequentIteration = false; // Added 4/13/2020 td 
+            bool bInvalidIteration = false;  // Added 4/13/2020 td
 
+            //
+            // Process the right-most digit, and if a "9" becomes "0" then we continue
+            //   the looping (so that the next-more-significant digit is incremented as
+            //   well).   If the number is "9999" then we will have to loop 4 times.
+            //     ---4/13/2020 Thomas Downes
+            //
             for (int intCharIndex = -1 + pstrInputNumber.Length; intCharIndex >= 0; intCharIndex--)
             {
+                //Added 4/13/2020 thomas d. 
+                bInvalidIteration = (bSubsequentIteration && (false == bCarryTheOne_CurrentOperation));
+                if (bInvalidIteration) throw new Exception("Invalid iteration.");
+
                 charCurrDigit = stringBuild[intCharIndex];
+                bCarryTheOne_NextOperation = false;  //Reinitialize.  
 
                 charIncremented = IncrementDigit(charCurrDigit, ref bCarryTheOne_NextOperation, ref sErrorMessage);
 
@@ -37,6 +53,10 @@ namespace AddHugeNumbersNetCore
                 if (pbFormatCommas && charCurrDigit == ',') intIndexOfBiggestComma = intCharIndex;
 
                 if (false == bCarryTheOne_NextOperation) break;
+
+                //Prepare for next iteration.  (This is for programmer comprehension.)
+                bSubsequentIteration = true;  
+                bCarryTheOne_CurrentOperation = bCarryTheOne_NextOperation;
 
             }
 
