@@ -19,6 +19,11 @@ namespace TestAdd_Core_ConsoleApp1
             Console.WriteLine("____                                                              _______");
             Console.WriteLine("_________________________________________________________________________");
 
+            // Establish an event handler to process key press events.
+            //  https://docs.microsoft.com/en-us/dotnet/api/system.console.cancelkeypress?view=netframework-4.8
+            //
+            Console.CancelKeyPress += new ConsoleCancelEventHandler(myHandler);
+
             //bool boolAdding;
             //bool boolFibonacci;
             //bool boolIncrementing;  
@@ -48,7 +53,8 @@ namespace TestAdd_Core_ConsoleApp1
 
                 }
 
-
+                if (bUserWantsToExit) break;
+                if (mod_bUserStoppedExecution) break; 
 
             } while (true);
 
@@ -82,6 +88,7 @@ namespace TestAdd_Core_ConsoleApp1
 
             do
             {
+                if (mod_bUserStoppedExecution) break;  // Added 4/12/2020 td
                 Console.WriteLine("__");
                 Console.WriteLine("Enter another huge decimal number?  (Y/N) ");
                 char keyPressed = Console.ReadKey(true).KeyChar;
@@ -139,19 +146,39 @@ namespace TestAdd_Core_ConsoleApp1
             //Added 4/12/2020 Thomas Downes
             //
             string strNumber = "1";
+            int intSleepMS = 100;
+            bool boolSleepActivated = false;
 
             do //while (true)
             {
+                //if (mod_bUserStoppedExecution) break; 
+                if (mod_bUserStoppedExecution)
+                {
+                    Console.WriteLine(".....");
+                    Console.WriteLine("Want to stop/terminate the sequence?  (For termination, press Y.)");
+                    Console.WriteLine(".....");
+                    if (Console.ReadKey(true).Key == ConsoleKey.Y) break;
+                    Console.WriteLine(".....");
+                    Console.WriteLine("Want to slow down the sequence, to a reasonable speed?  (For slowness, press Y.)");
+                    Console.WriteLine(".....");
+                    if (Console.ReadKey(true).Key == ConsoleKey.Y)
+                    {
+                        // Added 4/12/2020 thomas downes 
+                        boolSleepActivated = true;  
+                        intSleepMS *= 100;
+                    }
+                }
 
                 Console.WriteLine(strNumber);
 
-                //strNumber = AddHugeNumbersNetCore.Ins
+                //
+                // Major call !!  
+                //
+                strNumber = AddHugeNumbersNetCore.IncrementingNumbers.Increment(strNumber);  
+
+                if (boolSleepActivated) System.Threading.Thread.Sleep(intSleepMS);  
 
             } while (true);
-
-
-
-
 
         }
 

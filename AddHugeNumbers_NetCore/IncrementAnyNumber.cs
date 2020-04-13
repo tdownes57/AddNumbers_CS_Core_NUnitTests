@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AddHugeNumbersNetCore
 {
-    class IncrementAnyNumber
+    public class IncrementAnyNumber
     {
         public static string IncrementAnyString(string pstrInputNumber, ref string pref_sErrorMessage, bool pbFormatCommas)
         {
