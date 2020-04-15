@@ -147,7 +147,7 @@ namespace TestAdd_Core_ConsoleApp1
             //
             string strNumber = "1";
             int intSleepMS = 100;
-            bool boolSleepActivated = true;  // false;
+            bool boolSleepActivated = false; // true;  // false;
             string strErrorMessage = "";
 
             do //while (true)
@@ -159,6 +159,8 @@ namespace TestAdd_Core_ConsoleApp1
                     Console.WriteLine("Want to stop/terminate the sequence?  (For termination, press Y.)");
                     Console.WriteLine(".....");
                     if (Console.ReadKey(true).Key == ConsoleKey.Y) break;
+                    //Reinitialize the module Boolean value. ----4/14/2020 thomas downes
+                    mod_bUserStoppedExecution = false;
                     Console.WriteLine(".....");
                     Console.WriteLine("Want to slow down the sequence, to a reasonable speed?  (For slowness, press Y.)");
                     Console.WriteLine(".....");
@@ -168,10 +170,13 @@ namespace TestAdd_Core_ConsoleApp1
                         boolSleepActivated = true;
                         //intSleepMS += 100;
                         intSleepMS = (2 * intSleepMS);
+                        //Reinitialize the module Boolean value. ----4/14/2020 thomas downes
+                        mod_bUserStoppedExecution = false; 
                     }
                 }
 
-                Console.WriteLine(strNumber);
+                //---Console.WriteLine(strNumber);
+                Console.WriteLine("   " + strNumber);
 
                 //
                 // Major call !!  
