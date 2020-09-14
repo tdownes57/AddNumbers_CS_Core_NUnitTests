@@ -2,6 +2,7 @@ using NUnit.Framework;
 //using AddSubtractHugeNumbers_CS; //Added 1-0 8-2019 thomas downes 
 // Added 2/26/2020 td //using AddingHugeNumbersCS;  //Added 2/13/2020 thomas downes
 using AddHugeNumbers_NetCore; //Refreshed 2/26/2020 td 
+using AddHugeNumbersNetCore;  //Added 9/11/2020 thomas downes  
 
 namespace AddSubtract_NUnitTests
 {
@@ -31,7 +32,8 @@ namespace AddSubtract_NUnitTests
             string strErrMessage = "";
             
             //var result = AddingDecs.AddDecDigits_ByArrays(" ", " ", boolCarry, strErrMessage);
-            string strResult = AddingDecs.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2, 
+            //-----string strResult = AddingDecs.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
+            string strResult = AddHugeNumbersNetCore.AddingDecimalStrings.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
                  ref boolCarry, ref strErrMessage);
 
             bool bMatchesExpectation = (strResult == "0");
@@ -60,7 +62,8 @@ namespace AddSubtract_NUnitTests
             string strErrMessage = "";
 
             //var result = AddingDecs.AddDecDigits_ByArrays(" ", " ", boolCarry, strErrMessage);
-            string strResult = AddingDecs.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
+            //------string strResult = AddingDecs.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
+            string strResult = AddingDecimalStrings.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
                  ref boolCarry, ref strErrMessage);
 
             bool bMatchesExpectation = (strResult == "1");
@@ -89,7 +92,9 @@ namespace AddSubtract_NUnitTests
             string strErrMessage = "";
 
             //var result = AddingDecs.AddDecDigits_ByArrays(" ", " ", boolCarry, strErrMessage);
-            string strResult = AddingDecs.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
+            //----string strResult = AddingDecs.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
+            string strResult = AddHugeNumbersNetCore.AddingDecimalStrings
+                .AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
                  ref boolCarry, ref strErrMessage);
 
             bool bMatchesExpectation = (strResult == "2");
@@ -118,7 +123,8 @@ namespace AddSubtract_NUnitTests
             string strErrMessage = "";
 
             //var result = AddingDecs.AddDecDigits_ByArrays(" ", " ", boolCarry, strErrMessage);
-            string strResult = AddingDecs.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
+            //-----string strResult = AddingDecs.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
+            string strResult = AddingDecimalStrings.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
                  ref boolCarry, ref strErrMessage);
 
             bool bMatchesExpectation = (strResult == "3");
@@ -141,7 +147,8 @@ namespace AddSubtract_NUnitTests
             bool boolCarry = false;
             string strErrMessage = "";
 
-            string strResult = AddingDecs.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
+            //string strResult = AddingDecs.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
+            string strResult = AddingDecimalStrings.AddDecDigits_ByArrays(psDecDigit1, psDecDigit2,
                  ref boolCarry, ref strErrMessage);
 
             bool bMatchesExpectation = (strResult == "0");
@@ -181,7 +188,8 @@ namespace AddSubtract_NUnitTests
             //     ref boolCarry, ref strErrMessage);
 
             //Added 2/26/2020 thomas downes  
-            string strResult = AddingDecs.AddDecDigits_PaddedStrings(psDecimalString1, psDecimalString2, ref strErrMessage);
+            //------string strResult = AddingDecs.AddDecDigits_PaddedStrings(psDecimalString1, psDecimalString2, ref strErrMessage);
+            string strResult = AddingDecimalStrings.AddDecDigits_PaddedStrings(psDecimalString1, psDecimalString2, ref strErrMessage);
 
             bool bMatchesExpectation = (strResult == "3");
 

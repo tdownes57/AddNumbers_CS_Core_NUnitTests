@@ -13,10 +13,12 @@ namespace AddHugeNumbersNetCore
     //
     //Added 1/7/2019 thomas downes
     //
-    public static class AddingDecs
+    public static class AddingDecimalStrings
     {
         //
         //Added 1/7/2019 thomas downes
+        //
+        //   Renamed "AddingDecs_Strings" on 9/11/2020.   
         //
 
         public static string AddAnyTwoDecStrings(string pstrDec1, string pstrDec2, 

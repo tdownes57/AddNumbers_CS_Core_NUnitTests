@@ -317,7 +317,8 @@ namespace AddHugeNumbersNetCore
                         if (mod_bUserStoppedExecution) break; //Added 4/7/2020 thomas downes
                         indexOfIteration++; 
                         //longFinonacciN_latest = (longFibonacciN_minus1 + longFibonacciN_minus2);
-                        strFibonacciN_latest = AddingDecs.AddAnyTwoDecStrings(strFibonacciN_minus1, strFibonacciN_minus2, ref strErrMessage, bFormatToIncludeCommas);
+                        //-----strFibonacciN_latest = AddingDecs.AddAnyTwoDecStrings(strFibonacciN_minus1, strFibonacciN_minus2, ref strErrMessage, bFormatToIncludeCommas);
+                        strFibonacciN_latest = AddingDecimalStrings.AddAnyTwoDecStrings(strFibonacciN_minus1, strFibonacciN_minus2, ref strErrMessage, bFormatToIncludeCommas);
 
                         if (strErrMessage != "")
                         {
