@@ -19,6 +19,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AddSubtractDecimals", "..\W
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddHugeNumbersCPP", "AddHugeNumbersCPP\AddHugeNumbersCPP.vcxproj", "{F921D829-60A1-4429-9424-91FA2615036F}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AddHugeNumbers_Python", "AddHugeNumbers_Python\AddHugeNumbers_Python.pyproj", "{81849E88-8BF8-45BD-8D4B-0B188FF51807}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,12 @@ Global
 		{F921D829-60A1-4429-9424-91FA2615036F}.Release|x64.Build.0 = Release|x64
 		{F921D829-60A1-4429-9424-91FA2615036F}.Release|x86.ActiveCfg = Release|Win32
 		{F921D829-60A1-4429-9424-91FA2615036F}.Release|x86.Build.0 = Release|Win32
+		{81849E88-8BF8-45BD-8D4B-0B188FF51807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81849E88-8BF8-45BD-8D4B-0B188FF51807}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{81849E88-8BF8-45BD-8D4B-0B188FF51807}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{81849E88-8BF8-45BD-8D4B-0B188FF51807}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81849E88-8BF8-45BD-8D4B-0B188FF51807}.Release|x64.ActiveCfg = Release|Any CPU
+		{81849E88-8BF8-45BD-8D4B-0B188FF51807}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
