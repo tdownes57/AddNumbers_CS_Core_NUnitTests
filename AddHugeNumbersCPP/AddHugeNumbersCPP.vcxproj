@@ -128,9 +128,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AddHugeNumbersCPP.cpp" />
+    <ClCompile Include="Digit.cpp" />
     <ClCompile Include="HugeNumber.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Digit.h" />
     <ClInclude Include="HugeNumber.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
