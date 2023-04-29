@@ -24,12 +24,24 @@
     <ClCompile Include="Digit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HugeLessThanOneDecimal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HugeRealNumber.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HugeNumber.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Digit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HugeLessThanOneDecimal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HugeRealNumber.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -130,10 +130,14 @@
     <ClCompile Include="AddHugeNumbersCPP.cpp" />
     <ClCompile Include="Digit.cpp" />
     <ClCompile Include="HugeNumber.cpp" />
+    <ClCompile Include="HugeLessThanOneDecimal.cpp" />
+    <ClCompile Include="HugeRealNumber.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Digit.h" />
     <ClInclude Include="HugeNumber.h" />
+    <ClInclude Include="HugeLessThanOneDecimal.h" />
+    <ClInclude Include="HugeRealNumber.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

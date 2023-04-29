@@ -67,6 +67,35 @@ public:
 
 	}
 
+	HugeNumber AddNumber(HugeNumber otherNumber)
+	{
+		int indexDigit = 0;
+		HugeNumber output;
+		bool bEnteredInnerLoop = false;
+		int intMaxDigits = (mod_numDigits > otherNumber.mod_numDigits ? mod_numDigits :
+			otherNumber.mod_numDigits);
+
+		while (indexDigit < intMaxDigits)
+		{
+
+
+
+		}
+
+
+
+	}
+
+
+	Digit GetDigit_OrZero(int par_index)
+	{
+		if (par_index >= mod_numDigits)
+		{
+			return Digit();   //The default digit is '0'.
+		}
+		else return mod_array[par_index];
+	}
+
 
 
 
