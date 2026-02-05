@@ -11,6 +11,7 @@ addition and subtraction can be re-engineered from scratch.
 The folders correspond to distinct languages utilized to implement the algorithm:
      ...CPP ==> C++
      ...Python ==> Python
-     ...NetCore ==> C#.net 
+     ...CSharp ==> C#, .NET Framework
+     ...NetCore ==> C#, .NET Core 
      ... etc.
     ---Thomas C. Downes, 2/04/2026
